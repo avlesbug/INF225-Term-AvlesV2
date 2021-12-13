@@ -1,0 +1,21 @@
+start:
+a er 8
+b er 5
+c er 0
+d er listen: [1 2 3 4]
+funksjon steg(x,y) gjor:
+    x+(0 fra d)
+.
+hvis a er mindre enn b gjor:
+    fra c til 3 gjor:
+        c er steg(c,1)
+        skriv ut tekst "c har naa verdi"
+        skriv ut c.
+,ellers:
+    saa lenge a er storre enn b gjor:
+        b er steg(b,1)
+        skriv ut tekst "b har naa verdi"
+        skriv ut b.
+.
+skriv ut j
+slutt.

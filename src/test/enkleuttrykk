@@ -1,0 +1,18 @@
+start:
+a er 3
+skriv ut a
+//3
+a er a+1
+skriv ut a
+//4
+b er 2
+c er 3
+d er b+c
+skriv ut d
+//5
+skriv ut 3 er mindre enn 4
+//sant
+skriv ut ikke sant
+//usant
+skriv ut tekst "eksempel paa print av tekst"
+slutt.

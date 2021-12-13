@@ -1,0 +1,18 @@
+start:
+funksjon add(c,y) gjor:
+    c+y.
+funksjon mult(c,y) gjor:
+    c*y.
+funksjon sub(c,y) gjor:
+    c-y.
+funksjon prosent(c,y) gjor:
+    c/y*100.
+x er add(3,4)
+z er mult(3,4)
+q er sub(6,2)
+p er prosent(20,50)
+skriv ut x
+skriv ut z
+skriv ut q
+skriv ut p
+slutt.
