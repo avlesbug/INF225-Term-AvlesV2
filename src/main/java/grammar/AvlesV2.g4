@@ -6,7 +6,7 @@ statement: doexpr | funcdec;
 
 doexpr: ifexpr | decl | boolexpr | forloop | whileloop | expr | print;
 
-funcdec: 'funksjon ' funcname=ID'('fstparam=ID','sndparam=ID')''gjor:' funcret=expr '.';
+funcdec: 'funksjon ' funcname=ID'('params=ID+')''gjor:' funcbdy=doexpr+ ',''gir:' funcret=expr'.';
 
 whileloop: 'saa lenge' boolexpr 'gjor:' statement+'.';
 
@@ -28,24 +28,23 @@ boolexpr: left=expr op=('er lik'|'er ulik') right=expr # EqNo
 
 expr: left=expr op=('*'|'/') right=expr # MulDiv
     | left=expr op=('+'|'-') right=expr # AddSub
-    | left=expr ('%') right=expr # Mod
     | index=expr 'fra' list=ID # ListGet
     | 'storrelsen til' list=ID # ListSize
     | '('expr')' #Parens
-    | ID'('fstparam=expr','sndparam=expr')' # funccall
+    | ID'('params=expr+')' # funccall
     | NUMBER #number
     | ID #id
     ;
 
 
 decl: ID 'er' (expr) # VarDec
-    | ID 'er listen:' array # ListDec
+    | ID 'er listen' array # ListDec
+    | ID 'er' boolexpr # BoolDec
     ;
 
 print: 'skriv ut' NUMBER #PrintNum
 | 'skriv ut' ID #PrintId
 | 'skriv ut' boolexpr #PrintBool
-| 'skriv ut listen' array #Printarray
 | 'skriv ut tekst' '"'ID+'"' #PrintString
 ;
 

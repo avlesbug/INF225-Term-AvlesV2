@@ -1,18 +1,38 @@
 start:
-funksjon add(c,y) gjor:
-    c+y.
-funksjon mult(c,y) gjor:
-    c*y.
-funksjon sub(c,y) gjor:
-    c-y.
-funksjon prosent(c,y) gjor:
-    c/y*100.
-x er add(3,4)
-z er mult(3,4)
-q er sub(6,2)
-p er prosent(20,50)
-skriv ut x
-skriv ut z
-skriv ut q
-skriv ut p
+
+funksjon add(c y z) gjor:
+    skriv ut tekst "legger sammen parameterene"
+     r er (c+y+z)
+    , gir: r.
+
+funksjon runderTilGrader(runde) gjor:
+    r er runde*360
+    , gir: r.
+
+funksjon prosent(c y) gjor:
+    skriv ut tekst "prosent"
+    r er c/y*100
+    , gir: r.
+
+
+funksjon fibonacci(n) gjor:
+    fst er 0
+    snd er 1
+    temp er 0
+    fra 0 til n gjor:
+        skriv ut fst
+        temp er snd
+        snd er fst+snd
+        fst er temp
+        .
+    , gir: 0 .
+
+
+fibonacci(20)
+
+d er listen [6 5 2]
+a er 0 fra d
+skriv ut d
+skriv ut ss
+
 slutt.

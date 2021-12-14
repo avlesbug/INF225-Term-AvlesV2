@@ -1,0 +1,8 @@
+start:
+a er 13
+b er 8
+saa lenge a er storre enn b gjor:
+    b er b+1
+    skriv ut tekst "b har naa verdi"
+    skriv ut b.
+slutt.
