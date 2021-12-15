@@ -37,7 +37,7 @@ expr: left=expr op=('*'|'/') right=expr # MulDiv
     ;
 
 
-decl: ID 'er' (expr) # VarDec
+decl: ID 'er' expr # VarDec
     | ID 'er listen' array # ListDec
     | ID 'er' boolexpr # BoolDec
     ;
@@ -66,7 +66,7 @@ AND: 'og';
 OR: 'eller';
 
 ID : [a-z][a-zA-Z0-9]*;
-NUMBER : ('-')?DIGIT+('.'DIGIT+)?;
+NUMBER : DIGIT+('.'DIGIT+)?;
 DIGIT : [0-9];
 COMMENT : '//' ~[\r\n_] -> skip;
 SPACE : [ \t\n\r]+ -> skip;

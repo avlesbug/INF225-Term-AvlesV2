@@ -1,5 +1,6 @@
 import Generated.AvlesV2BaseVisitor;
 import Generated.AvlesV2Parser;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.text.DecimalFormat;
@@ -24,6 +25,12 @@ public class MyVisitor extends AvlesV2BaseVisitor<Double> {
     }
 
     @Override
+    public Double visit(ParseTree tree) {
+        //System.out.println(tree.toStringTree());
+        return tree.accept(this);
+    }
+
+    @Override
     public Double visitFuncdec(AvlesV2Parser.FuncdecContext ctx) {
         String funcname = ctx.funcname.getText();
         for(int i=1; i<ctx.ID().size();i++) {
@@ -40,20 +47,24 @@ public class MyVisitor extends AvlesV2BaseVisitor<Double> {
     public Double visitFunccall(AvlesV2Parser.FunccallContext ctx) {
         String funccall = ctx.getText();
         String funcname = ctx.ID().getText();
+        Map<String,Double> funcvariables = new HashMap<>();
+        Map<String,Double> tempvariables = variables;
+
         if(funcret.containsKey(funcname)) {
             for(int i=0; i<ctx.expr().size();i++) {
                 Double param = visit(ctx.expr(i));
-                variables.put(funcvarnames.get(funcname + (i+1)), param);
+                funcvariables.put(funcvarnames.get(funcname + (i+1)), param);
+
             }
+            variables = funcvariables;
             AvlesV2Parser.ExprContext funcreturn = funcret.get(funcname);
             List<AvlesV2Parser.DoexprContext> functionbody = funcbdy.get(funcname);
             for(AvlesV2Parser.DoexprContext exp : functionbody){
                 visit(exp);
             }
             Double result = visit(funcreturn);
-            for(int i=0; i<ctx.expr().size();i++) {
-                variables.remove(funcname + i+1);
-            }
+            variables = tempvariables;
+            //System.out.println(result);
             return result;
         }else{
             System.out.println("Funksjonen "+funccall+" finnnes ikke..");
@@ -248,7 +259,7 @@ public class MyVisitor extends AvlesV2BaseVisitor<Double> {
             return null;
         }
         if (ctx.op.getType() == AvlesV2Parser.EQ) {
-            if (left == right) {
+            if (left.equals(right)) {
                 return Double.valueOf(1);
             }else {
                 return Double.valueOf(0);

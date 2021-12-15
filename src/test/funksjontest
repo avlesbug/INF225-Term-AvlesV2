@@ -1,8 +1,7 @@
 start:
 
-funksjon add(c y z) gjor:
-    skriv ut tekst "legger sammen parameterene"
-     r er (c+y+z)
+funksjon add(c y) gjor:
+    r er (c+y)
     , gir: r.
 
 funksjon runderTilGrader(runde) gjor:
@@ -22,17 +21,23 @@ funksjon fibonacci(n) gjor:
     fra 0 til n gjor:
         skriv ut fst
         temp er snd
-        snd er fst+snd
+        snd er add(fst snd)
         fst er temp
         .
     , gir: 0 .
 
+funksjon rec(n) gjor:
+    hvis n er mindre enn 1 gjor:
+        svaret er 1
+        ,ellers:
+        svaret er rec(n-1)+rec(n-2).
+    ,gir: svaret.
 
-fibonacci(20)
 
-d er listen [6 5 2]
-a er 0 fra d
-skriv ut d
-skriv ut ss
+
+
+a er rec(3)
+
+skriv ut a
 
 slutt.
